@@ -7,21 +7,19 @@ const modalRoot = document.querySelector('#modal-root')
 
 export const Modal = ({ onClose, children }) => {
     
-    const handleKeyDown = (e) => {
-        if (e.code === 'Escape') {
-            onClose()
-        }
-    }
-    
     useEffect(() => {
-        window.addEventListener('keydown', handleKeyDown)
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown)
-        }
-    }, [handleKeyDown])
-    
-    
+    const handleKeyDown = (e) => {
+      if (e.code === "Escape") {
+        onClose()
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
 
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    }
+  }, [onClose])
+    
     const handleClick = (e) => {
         if (e.target === e.currentTarget) {
         onClose();
@@ -35,7 +33,6 @@ export const Modal = ({ onClose, children }) => {
             </div>
         </div>, modalRoot
     )
-    
 }
 
 Modal.propTypes = {
