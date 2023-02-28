@@ -6,19 +6,21 @@ import PropTypes from 'prop-types';
 const modalRoot = document.querySelector('#modal-root')
 
 export const Modal = ({ onClose, children }) => {
-
-    useEffect(() => {
-        window.addEventListener('keydown', handleKeyDown)
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown)
-        }
-    }, [])
     
     const handleKeyDown = (e) => {
         if (e.code === 'Escape') {
             onClose()
         }
     }
+    
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyDown)
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown)
+        }
+    }, [handleKeyDown])
+    
+    
 
     const handleClick = (e) => {
         if (e.target === e.currentTarget) {
