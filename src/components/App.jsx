@@ -67,6 +67,7 @@ export const App = () => {
       {loading && <Spinner />}
       {showModal && <Modal onClose={toggleModal}> 
         <img src={selectedImage.largeImageURL} alt="" width='100%' /></Modal>}
+      {error && <ToastContainer position='bottom-left' delay='3000' />}
       <ToastContainer position='bottom-left' delay='3000' />
     </div>
   )
